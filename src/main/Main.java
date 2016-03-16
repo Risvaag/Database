@@ -25,12 +25,14 @@ public class Main {
         System.out.println("Exercise Name: " + exerciseName);
       }
       if (input.equals("diff")){
-
+        System.out.println("Not yet implemented.");
       }
       if (input.equals("new training")){
-
+        System.out.println("Not yet implemented.");
       }
-
+      if (input.equals("log")){
+        System.out.println("Not yet implemented.");
+      }
       System.out.print(">> ");
     }
   }
