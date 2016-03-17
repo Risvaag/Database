@@ -115,6 +115,34 @@ public class Main {
 		  e.printStackTrace();
 	  }
   }
+  
+  private static void viewResults(Connection con) {
+	  Statement s;
+	try {
+		s = con.createStatement();
+		ResultSet rs = s.executeQuery("SELECT * FROM resultat");
+
+		  int columns = rs.getMetaData().getColumnCount();
+
+		  StringBuilder message = new StringBuilder();
+		  
+		  while (rs.next()) {
+		      for (int i = 1; i <= columns; i++) {
+		          message.append(rs.getString(i) + " \t\t");
+		      }
+		      message.append("\n");
+		  }
+		  System.out.println("Id:\t trening_id:\t ovelse_id:\t belastning:\t ant sett:\t ant rep:\t logg_id:");
+		  System.out.println(message);  // print table contents
+		  
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	  
+
+	  
+  }
 
   /*private int getLogID(Connection con, int id){
 	  try{
@@ -167,9 +195,10 @@ public class Main {
 	          System.out.println(help);
 	          break;
 	      case "search":
-	    	  System.out.println("Enter your search: ");
-	    	  String seek = scanner.nextLine();
-	    	  search(con, seek, scanner);
+//	    	  System.out.println("Enter your search: ");
+//	    	  String seek = scanner.nextLine();
+//	    	  search(con, seek, scanner);
+	    	  viewResults(con);
 	    	  break;
         case "log":
           System.out.println("New log. Press enter to send.");
