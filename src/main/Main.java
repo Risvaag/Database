@@ -8,14 +8,16 @@ public class Main {
     System.out.print("Ready\n>> ");
     while (scanner.hasNext()){
       String input = scanner.nextLine();
+
       // Registrere hvilke oevelser man har gjort under en bestemt treningsoekt, samt hvordan selve treningen har gaatt.
       // Holde oversikt over kjente oevelser, sette opp nye maal, og vite hvilke maal man har hatt.
       // Se progresjon for en bestemt oevelse over en periode, samt hvilke maal man har hatt.
-      // Se differensen mellom et bestemt resultat og det beste resultatet i loepet av siste uke, maaned eller tre maaneder, samt forskjellen mellom det og maalet som har vært aktivt i den siste perioden.
+      // Se differensen mellom et bestemt resultat og det beste resultatet i loepet av siste uke, maaned eller tre maaneder, samt forskjellen mellom det og maalet som har vaert aktivt i den siste perioden.
       // Kunne kopiere en bestemt treningsoekt over til en ny mal. Hver mal skal kunne registreres med et navn og kunne brukes til aa registrere en ny treningsoekt.
       // Se sammenhengen mellom resultater og sin egen form eller spesifikke treningsforhold.
       // Lese treningsnotater samlet i en logg.
       // Legge til, omorganisere og slette oevelser, grupper og delgrupper.
+
       if (input.equals("exit")){
         break;
       }
