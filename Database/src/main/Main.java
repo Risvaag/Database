@@ -19,7 +19,7 @@ public class Main {
 			e.printStackTrace();
 		}
   }
-  
+
   private static void printExercises(ResultSet res){
 	  try {
 		  int i = 0;
@@ -31,7 +31,7 @@ public class Main {
 		e.printStackTrace();
 	}
   }
-  
+
   private static int selectExercise(Scanner scanner){
 	  System.out.println("Select the ID of the exercise you wish to add: ");
 	  try{
@@ -41,7 +41,7 @@ public class Main {
 	  }
 	  return -1;
   }
-  
+
   private static void addExercises(ResultSet results, Scanner scanner, List<Integer> exercises){
 	  printExercises(results);
 		int id = selectExercise(scanner);
@@ -51,10 +51,10 @@ public class Main {
 			exercises.add(id);
 		}
   }
-    
+
   public static void startApp(Connection con) {
 	Scanner scanner = new Scanner(System.in);
-    
+
     String help = "\n1. add\t\t- add new workout\n"+
 	          "2. help\t\t- show all commands\n" +
 	          "3. search\t- find exercises\n" +
@@ -62,8 +62,9 @@ public class Main {
     System.out.println(help);
 
     boolean running = true;
-    
+
     while (running){
+      System.out.print(">> ");
       String input = scanner.nextLine();
       switch (input) {
 	      case "4":
@@ -90,16 +91,16 @@ public class Main {
     }
   }
   private static void addWorkout(Connection con, Scanner scanner){
-	  
+
 	  List<Integer> exercises = new ArrayList<>();
 	  while (true) {
 		  //TODO make this not shitty
 		  System.out.println("Add another exercise? [y/n]");
 		  String response = scanner.nextLine().toLowerCase();
-		  
+
 		  if(response.equals("y")|| response.equals("yes")){
 			  System.out.println("Which type of exercise would you add?\n" +
-					  "type strength, endurance or cardio"); 
+					  "type strength, endurance or cardio");
 			  boolean done = false;
 			  while(done == false){
 				  switch(scanner.nextLine().toLowerCase()){
@@ -134,50 +135,50 @@ public class Main {
 		  }
 	  }
   }
-  
+
   private static void StrengthExercise(Connection con, Scanner scanner) {
 	  System.out.println("Name of exercise: ");
 	  String name = scanner.nextLine();
-	  
+
 	  System.out.println("Total reps: ");
 	  int reps = scanner.nextInt();
-	  
+
 	  System.out.println("Total sets: ");
 	  int sets = scanner.nextInt();
-	  
+
 	  System.out.println("Total weight: ");
 	  int weight = scanner.nextInt();
-	  
+
   }
-  
-  private static void CardioExercise(Connection con, Scanner scanner) {	  
+
+  private static void CardioExercise(Connection con, Scanner scanner) {
 	  System.out.println("Name of exercise: ");
 	  String name = scanner.nextLine();
-	  
+
 	  System.out.println("Total reps: ");
 	  int reps = scanner.nextInt();
-	  
+
 	  System.out.println("Total sets: ");
 	  int sets = scanner.nextInt();
-	  
+
 	  System.out.println("Total weight: ");
 	  int weight = scanner.nextInt();
   }
-  
+
   private static void EnduranceExercise(Connection con, Scanner scanner) {
 	  System.out.println("Name of exercise: ");
 	  String name = scanner.nextLine();
-	  
+
 	  System.out.println("Total length: ");
 	  int length = scanner.nextInt();
-	  
+
 	  System.out.println("Total time: ");
 	  int time = scanner.nextInt();
   }
 
   private static void search(Connection con, String seek, Scanner scanner){
-	  
-	  
+    System.out.println("Searching...");
+    System.out.println("Sorry, can't find anything.");
   }
 
 }
