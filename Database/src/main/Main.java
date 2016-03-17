@@ -129,14 +129,17 @@ public class Main {
   public static void startApp(Connection con) {
 	Scanner scanner = new Scanner(System.in);
 
-    String help = "\n1. add workout\t- add new workout\n"+
-    		"2. add exercise\t- add new workout\n"+
-    		"3. add result\t- add new result\n"+
-	          "4. help\t\t- show all commands\n" +
-	          "5. search\t- find exercises\n" +
-	          "6. exit\t\t- quit this program\n"+
-            "7. log \t\t- write a new log entry\n"+
-            "8. show log \t- Show the log";
+    String help = "\n"+
+                  "add workout   - register workout type   \n"+
+                  "add exercise  - add new exercise        \n"+
+                  "add result    - add result to exercise  \n"+
+                  "help          - show this command-help  \n"+
+                  "exit          - exit this program       \n"+
+                  "search*       - find exercises          \n"+
+                  "log*          - write a new log entry   \n"+
+                  "show log*     - Show the log            \n"+
+                                                          "\n"+
+                  "*not yet implemented\n";
     System.out.println(help);
 
     boolean running = true;
@@ -148,7 +151,7 @@ public class Main {
 	      case "exit":
 	    	  System.out.println("See you!");
 	    	  running = false;
-	          break;
+	        break;
 	      case "add exercise":
 	    	// Start add new workout
 	    	  System.out.println("Enter the ID of the workout you want to edit");
