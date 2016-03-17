@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.mysql.jdbc.SQLError;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -79,19 +81,60 @@ public class Main {
   }
   
   public static void addResult(Connection con, Scanner scanner){
+	  System.out.println("Which training are you adding a result to?\n>> ");
+	  int training = scanner.nextInt();
+	  scanner.nextLine();
+	  System.out.println("Which exercise is the result for?\n>> ");
+	  int exercise = scanner.nextInt();
+	  scanner.nextLine();
+	  System.out.println("What load did you experience?\n>> ");
+	  int load = scanner.nextInt();
+	  scanner.nextLine();
+	  System.out.println("How many sets did you do?\n>> ");
+	  int set = scanner.nextInt();
+	  scanner.nextLine();
+	  System.out.println("How many repetitions did you do?\n>> ");
+	  int rep = scanner.nextInt();
+	  scanner.nextLine();
 	  
+	  try{
+		  Statement s = con.createStatement();
+		  s.executeUpdate("INSERT INTO Resultatlogg(ovelse_id) VALUES("+exercise+")");
+		  ResultSet res = s.executeQuery("SELECT MAX(id) from Resultatlogg");
+		  int logID = 1;
+		  if(res.next()){
+			  logID = res.getInt("MAX(id)");
+			  //System.out.println(logID);
+		  }
+		  s.executeUpdate("INSERT INTO resultat(trening_id, ovelse_id, belastning, antall_set, antall_rep, logg_id) "
+		  		+ "VALUES ("+ training +","+ exercise+","+load+","+set+","+rep+","+logID+")");
+	  }catch(SQLException e){
+		  e.printStackTrace();
+	  }
   }
+  
+  /*private int getLogID(Connection con, int id){
+	  try{
+	  	Statement s = con.createStatement();
+	  	s.executeQuery("SELECT id FROM Resultatlog WHERE ovelse_id="+id);
+	  }catch(SQLException e){
+		  e.printStackTrace();
+	  }
+	  
+	  return 0;
+  }*/
 
   public static void startApp(Connection con) {
 	Scanner scanner = new Scanner(System.in);
 
     String help = "\n1. add workout\t- add new workout\n"+
     		"2. add exercise\t- add new workout\n"+
-	          "3. help\t\t- show all commands\n" +
-	          "4. search\t- find exercises\n" +
-	          "5. exit\t\t- quit this program\n"+
-            "6. log \t\t- write a new log entry\n"+
-            "7. show log \t- Show the log";
+    		"3. add result\t- add new result\n"+
+	          "4. help\t\t- show all commands\n" +
+	          "5. search\t- find exercises\n" +
+	          "6. exit\t\t- quit this program\n"+
+            "7. log \t\t- write a new log entry\n"+
+            "8. show log \t- Show the log";
     System.out.println(help);
 
     boolean running = true;
@@ -127,6 +170,18 @@ public class Main {
           String text = scanner.nextLine();
           newLogEntry(text);
           break;
+        case "add result":
+        	addResult(con, scanner);
+        	System.out.println("add more results? [y/n] \n>> ");
+        	while(true){	
+        		String response = scanner.nextLine().toLowerCase();
+        		if(response.equals("y") || response.equals("yes")){
+        			addResult(con, scanner);
+        		}
+        		else if(response.equals("n")||response.equals("no")){
+        			break;
+        		}
+        	}
         case "show log":
           String list = getLogEntries();
           System.out.println("List of all log elements."+ list);
