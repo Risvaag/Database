@@ -9,14 +9,14 @@ import java.util.List;
 
 public class Querries {
 	
-	public ResultSet getOving(String type, Connection con){
+	public static ResultSet getOving(String type, Connection con){
 		ResultSet ovelse;
 		String sqlEnum = "";
 		boolean first = true;
 		
 		try{
 			Statement s = con.createStatement();
-			ResultSet result = s.executeQuery("SELECT ovelse_id FROM " + "ovelsestype WHERE type="+type);
+			ResultSet result = s.executeQuery("SELECT ovelse_id FROM " + "ovelsestype WHERE type='"+type+"'");
 			if(result.next()){
 				sqlEnum = "id=" + result.getString("ovelse_id");
 			}
@@ -24,6 +24,9 @@ public class Querries {
 				sqlEnum += "OR id= "+result.getString("ovelse_id");
 			}
 			ovelse = s.executeQuery("SELECT * FROM Ovelse WHERE "+ sqlEnum);
+			while(ovelse.next()){
+				System.out.println(ovelse.getString("navn"));
+			}
 		}catch(SQLException e){
 //			System.err.println(e);
 			e.printStackTrace();
