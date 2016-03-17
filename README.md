@@ -6,11 +6,11 @@ Follow guide [here](https://www.ntu.edu.sg/home/ehchua/programming/java/JDBC_Bas
 
 TLDR:
 put the JDBC Jar-file in
-	/Library/Java/Extensions
+	''/Library/Java/Extensions
 First compile the app with javac
-		javac main/Main.java
+	''javac main/Main.java
 And run the app in terminal from the src-folder.
-	java main.Main .:/Library/Java/Extensions/mysql-connector-java-5.1.38-bin.jar
+	''java main.Main .:/Library/Java/Extensions/mysql-connector-java-5.1.38-bin.jar
 
 
 ![Screaming Sun](http://i.imgur.com/mky3LN7.png)
