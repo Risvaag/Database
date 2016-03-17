@@ -32,8 +32,8 @@ public class Main {
 			e.printStackTrace();
 		}
   }
-  
-  
+
+
   private static Date handleTimestamp(String dateString){
 	 SimpleDateFormat format = new SimpleDateFormat("dd:MM:yyyy");
 	 try {
@@ -45,7 +45,7 @@ public class Main {
 	 System.out.println("null value!");
 	 return null;
   }
-  
+
 
   private static void printExercises(ResultSet res){
 	  try {
@@ -81,7 +81,7 @@ public class Main {
 			exercises.add(id);
 		}
   }
-  
+
   public static void addResult(Connection con, Scanner scanner){
 	  System.out.println("Which training are you adding a result to?\n>> ");
 	  int training = scanner.nextInt();
@@ -98,7 +98,7 @@ public class Main {
 	  System.out.println("How many repetitions did you do?\n>> ");
 	  int rep = scanner.nextInt();
 	  scanner.nextLine();
-	  
+
 	  try{
 		  Statement s = con.createStatement();
 		  s.executeUpdate("INSERT INTO Resultatlogg(ovelse_id) VALUES("+exercise+")");
@@ -114,7 +114,7 @@ public class Main {
 		  e.printStackTrace();
 	  }
   }
-  
+
   /*private int getLogID(Connection con, int id){
 	  try{
 	  	Statement s = con.createStatement();
@@ -122,7 +122,7 @@ public class Main {
 	  }catch(SQLException e){
 		  e.printStackTrace();
 	  }
-	  
+
 	  return 0;
   }*/
 
@@ -175,7 +175,7 @@ public class Main {
         case "add result":
         	addResult(con, scanner);
         	System.out.println("add more results? [y/n] \n>> ");
-        	while(true){	
+        	while(true){
         		String response = scanner.nextLine().toLowerCase();
         		if(response.equals("y") || response.equals("yes")){
         			addResult(con, scanner);
@@ -184,6 +184,7 @@ public class Main {
         			break;
         		}
         	}
+          break;
         case "show log":
           String list = getLogEntries();
           System.out.println("List of all log elements."+ list);
@@ -195,14 +196,14 @@ public class Main {
     }
   }
   private static void newLogEntry(String string){
-    
+
   }
   private static String getLogEntries(){
     String entries = "A lot of entries";
     return entries;
   }
-  
-  
+
+
   private static void addWorkout(Connection con, Scanner scanner)
   {
 	  String note = "'No note added'";
@@ -230,14 +231,14 @@ public class Main {
 	  }catch(SQLException e){
 		  e.printStackTrace();
 	  }
-	//new Date()  
+	//new Date()
   }
-  
-  
+
+
   private static void addExercise(Connection con, Scanner scanner, int workout){
 	  scanner.nextLine();
 	  //TODO get next training ID
-	  
+
 	  List<Integer> exercises = new ArrayList<>();
 	  while (true) {
 		  //TODO make this not shitty
