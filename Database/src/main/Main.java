@@ -198,9 +198,7 @@ public class Main {
       }
     }
   }
-  private static void newLogEntry(String string){
-
-  }
+  private static void newLogEntry(String string){}
   private static String getLogEntries(){
     String entries = "A lot of entries";
     return entries;
@@ -211,19 +209,19 @@ public class Main {
   {
 	  String note = "'No note added'";
 	  System.out.println("What is the desired duration of the workout? ");
-	  System.out.println(">> ");
+	  System.out.print(">> ");
 	  float duration = scanner.nextFloat();
 	  scanner.nextLine();
-	  System.out.println("What date is the workout on? [dd:MM:yyyy] \n>> ");
+	  System.out.print("What date is the workout on? [dd:MM:yyyy] \n>> ");
 	  String day = scanner.nextLine();
 	  //System.out.println("What time is the workout on? [hh:mm] \n>> ");
 	  //String time = scanner.nextLine();
 	  Date date = handleTimestamp(day);//+" "+time+":"+"00.000");
-	  System.out.println("add a note? [y/n] ");
+	  System.out.print("add a note? [y/n] \n>> ");
 	  String response = scanner.nextLine().toLowerCase();
 	  if(response.equals("y") || response.equals("yes")){
 		  System.out.println("Enter note (only one line): ");
-		  System.out.println(">> ");
+		  System.out.print(">> ");
 		  note = "'"+scanner.nextLine()+"'";
 	  }
 	  System.out.println(date);
@@ -245,12 +243,12 @@ public class Main {
 	  List<Integer> exercises = new ArrayList<>();
 	  while (true) {
 		  //TODO make this not shitty
-		  System.out.println("Add another exercise? [y/n]");
+		  System.out.print("Add another exercise? [y/n]\n>> ");
 		  String response = scanner.nextLine().toLowerCase();
 
 		  if(response.equals("y")|| response.equals("yes")){
-        System.out.println("Which type of exercise would you add?\n" +
-					  "1.\tCardio\n2.\tStrength\n3.\tEndurance");
+        System.out.print("Which type of exercise would you add?\n" +
+					  "1.\tCardio\n2.\tStrength\n3.\tEndurance\n\n>> ");
 			  boolean done = false;
 			  while(done == false){
 				  switch(scanner.nextLine().toLowerCase()){
@@ -272,7 +270,7 @@ public class Main {
 			  			//EnduranceExercise(con, scanner);
 			  			break;
 			  		default:
-			  			System.out.println("please select strength, endurance or cardio");
+			  			System.out.print("please select strength, endurance or cardio\n>> ");
 			  			break;
 			  	}
 			  }
