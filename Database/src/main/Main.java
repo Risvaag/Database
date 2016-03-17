@@ -58,7 +58,9 @@ public class Main {
     String help = "\n1. add\t\t- add new workout\n"+
 	          "2. help\t\t- show all commands\n" +
 	          "3. search\t- find exercises\n" +
-	          "4. exit\t\t- quit this program\n";
+	          "4. exit\t\t- quit this program\n"+
+            "5. log \t\t- write a new log entry"+
+            "6. show log - Show the log";
     System.out.println(help);
 
     boolean running = true;
@@ -99,23 +101,23 @@ public class Main {
 		  String response = scanner.nextLine().toLowerCase();
 
 		  if(response.equals("y")|| response.equals("yes")){
-			  System.out.println("Which type of exercise would you add?\n" +
-					  "type strength, endurance or cardio");
+        System.out.println("Which type of exercise would you add?\n" +
+					  "1.\tCardio\n2.\tStrength\n3.\tEndurance");
 			  boolean done = false;
 			  while(done == false){
 				  switch(scanner.nextLine().toLowerCase()){
-			  		case "cardio":
+			  		case "1":
 			  			done = true;
 			  			ResultSet results = Querries.getOving("cardio", con);
 			  			addExercises(results, scanner, exercises);
 			  			break;
-			  		case "strength":
+			  		case "2":
 			  			done=true;
 			  			ResultSet results2 = Querries.getOving("strength", con);
 			  			addExercises(results2, scanner, exercises);
 			  			//StrengthExercise(con, scanner);
 			  			break;
-			  		case "endurance":
+			  		case "3":
 			  			done = true;
 			  			ResultSet results3 = Querries.getOving("endurance", con);
 			  			addExercises(results3, scanner, exercises);
