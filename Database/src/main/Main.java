@@ -25,6 +25,7 @@ public class Main {
     try	{
 			Connection con = DriverManager.getConnection("jdbc:mysql://mysql.stud.ntnu.no/andrris_trening","andrris_db1", "cdji2005");
 			System.out.println("Connection Established\n");
+      System.out.println("Welcome to instamuscles by the training dudes.\nMay God bless you with a beautifull body.");
 			startApp(con);
 		}
 		catch(SQLException e)
@@ -129,19 +130,19 @@ public class Main {
   public static void startApp(Connection con) {
 	Scanner scanner = new Scanner(System.in);
 
-    String help = "\n"+
-                  "add workout   - register workout type   \n"+
-                  "add exercise  - add new exercise        \n"+
-                  "add result    - add result to exercise  \n"+
-                  "help          - show this command-help  \n"+
-                  "exit          - exit this program       \n"+
-                  "search*       - find exercises          \n"+
-                  "log*          - write a new log entry   \n"+
-                  "show log*     - Show the log            \n"+
+    String help = "\nCommands:\n"+
+                  "\tadd workout   - register workout type   \n"+
+                  "\tadd exercise  - add new exercise        \n"+
+                  "\tadd result    - add result to exercise  \n"+
+                  "\thelp          - show this command-help  \n"+
+                  "\texit          - exit this program       \n"+
+                  "\tsearch*       - find exercises          \n"+
+                  "\tlog*          - write a new log entry   \n"+
+                  "\tshow log*     - Show the log            \n"+
                                                           "\n"+
-                  "*not yet implemented\n";
+                  "\t*not yet implemented\n";
     System.out.println(help);
-
+    System.out.println("Waiting for user interaction:");
     boolean running = true;
 
     while (running){
