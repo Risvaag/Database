@@ -60,10 +60,38 @@ public class Main {
   }
   private static void addWorkout(Connection con, Scanner scanner){
 	  
-	  boolean addExercise = true;
-	  while (addExercise) {
-		  print("Which type of exercise would you add?\n" +
-				  "type strength or cardio");
+	  while (true) {
+		  //TODO make this not shitty
+		  System.out.println("Add another exercise? [y/n]");
+		  String response = scanner.nextLine().toLowerCase();
+		  System.out.println(response);
+		  if(response.equals("y")|| response.equals("yes")){
+			  print("Which type of exercise would you add?\n" +
+					  "type strength, endurance or cardio"); 
+			  boolean done = false;
+			  while(done == false){
+				  switch(scanner.nextLine().toLowerCase()){
+			  		case "cardio":
+			  			//Do something
+			  			done = true;
+			  			break;
+			  		case "strength":
+			  			//something else
+			  			done=true;
+			  			break;
+			  		case "endurance":
+			  			//done
+			  			done = true;
+			  			break;
+			  		default:
+			  			System.out.println("please select strength, endurance or cardio");
+			  			break;
+			  	}
+			  }
+		  }
+		  else if(response.equals("n") || response.equals("no")){
+			  break;
+		  }
 		  
 	  }
 	  
