@@ -115,7 +115,7 @@ public class Main {
 		  e.printStackTrace();
 	  }
   }
-  
+
   private static void viewResults(Connection con) {
 	  Statement s;
 	try {
@@ -125,7 +125,7 @@ public class Main {
 		  int columns = rs.getMetaData().getColumnCount();
 
 		  StringBuilder message = new StringBuilder();
-		  
+
 		  while (rs.next()) {
 		      for (int i = 1; i <= columns; i++) {
 		          message.append(rs.getString(i) + " \t\t");
@@ -134,14 +134,14 @@ public class Main {
 		  }
 		  System.out.println("Id:\t trening_id:\t ovelse_id:\t belastning:\t ant sett:\t ant rep:\t logg_id:");
 		  System.out.println(message);  // print table contents
-		  
+
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	  
 
-	  
+
+
   }
 
   /*private int getLogID(Connection con, int id){
@@ -164,7 +164,7 @@ public class Main {
                   "\tadd result    - add result to exercise  \n"+
                   "\thelp          - show this command-help  \n"+
                   "\texit          - exit this program       \n"+
-                  "\tsearch*       - find exercises          \n"+
+                  "\tresults       - show results of exercises\n"+
                   "\tlog*          - write a new log entry   \n"+
                   "\tshow log*     - Show the log            \n"+
                                                           "\n"+
@@ -194,7 +194,7 @@ public class Main {
 	    	//list all commands
 	          System.out.println(help);
 	          break;
-	      case "search":
+	      case "results":
 //	    	  System.out.println("Enter your search: ");
 //	    	  String seek = scanner.nextLine();
 //	    	  search(con, seek, scanner);
