@@ -59,8 +59,8 @@ public class Main {
 	          "2. help\t\t- show all commands\n" +
 	          "3. search\t- find exercises\n" +
 	          "4. exit\t\t- quit this program\n"+
-            "5. log \t\t- write a new log entry"+
-            "6. show log - Show the log";
+            "5. log \t\t- write a new log entry\n"+
+            "6. show log \t- Show the log";
     System.out.println(help);
 
     boolean running = true;
@@ -87,7 +87,7 @@ public class Main {
 	    	  search(con, seek, scanner);
 	    	  break;
 	      default:
-	    	  System.out.println("Not a valid command, type 4 to see the help section");
+	    	  System.out.println("Not a valid command, type 2 to see the help section");
 	    	  break;
       }
     }
