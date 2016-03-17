@@ -69,28 +69,44 @@ public class Main {
       System.out.print(">> ");
       String input = scanner.nextLine();
       switch (input) {
-	      case "4":
+	      case "exit":
 	    	  System.out.println("See you!");
 	    	  running = false;
 	          break;
-	      case "1":
+	      case "add":
 	    	// Start add new workout
 	    	  addWorkout(con, scanner);
 	    	  break;
-	      case "2":
+	      case "help":
 	    	//list all commands
 	          System.out.println(help);
 	          break;
-	      case "3":
+	      case "search":
 	    	  System.out.println("Enter your search: ");
 	    	  String seek = scanner.nextLine();
 	    	  search(con, seek, scanner);
 	    	  break;
+        case "log":
+          System.out.println("New log. Press enter to send.");
+          String text = scanner.nextLine();
+          newLogEntry(text);
+          break;
+        case "show log":
+          String list = getLogEntries();
+          System.out.println("List of all log elements."+ list);
+          break;
 	      default:
-	    	  System.out.println("Not a valid command, type 2 to see the help section");
+	    	  System.out.println("Not a valid command, type help to see available commands");
 	    	  break;
       }
     }
+  }
+  private static void newLogEntry(){
+    
+  }
+  private static String getLogEntries(){
+    String entries = "A lot of entries";
+    return entries;
   }
   private static void addWorkout(Connection con, Scanner scanner){
 
