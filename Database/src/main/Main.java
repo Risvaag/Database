@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -20,6 +22,28 @@ public class Main {
 		{
 			e.printStackTrace();
 		}
+  }
+  
+  private static void printExercises(ResultSet res){
+	  try {
+		  int i = 0;
+		while(res.next()){
+			i++;
+			  System.out.println(res.getString("id")+" : " + res.getString("navn"));
+		  }
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+  }
+  
+  private static int selectExercise(Scanner scanner){
+	  System.out.println("Select the ID of the exercise you wish to add: ");
+	  try{
+		  return scanner.nextInt();
+	  }catch(Exception e){
+		  e.printStackTrace();
+	  }
+	  return -1;
   }
     
   public static void startApp(Connection con) {
@@ -60,6 +84,7 @@ public class Main {
   }
   private static void addWorkout(Connection con, Scanner scanner){
 	  
+	  List<Integer> exercises = new ArrayList<>();
 	  while (true) {
 		  //TODO make this not shitty
 		  System.out.println("Add another exercise? [y/n]");
@@ -73,15 +98,22 @@ public class Main {
 				  switch(scanner.nextLine().toLowerCase()){
 			  		case "cardio":
 			  			done = true;
-			  			CardioExercise(con, scanner);
+			  			ResultSet results = Querries.getOving("cardio", con);
+			  			printExercises(results);
+			  			int id = selectExercise(scanner);
+			  			if(id == -1){
+			  				//fuck this
+			  			}else{
+			  				exercises.add(id);
+			  			}
 			  			break;
 			  		case "strength":
 			  			done=true;
-			  			StrengthExercise(con, scanner);
+			  			//StrengthExercise(con, scanner);
 			  			break;
 			  		case "endurance":
 			  			done = true;
-			  			EnduranceExercise(con, scanner);
+			  			//EnduranceExercise(con, scanner);
 			  			break;
 			  		default:
 			  			System.out.println("please select strength, endurance or cardio");
@@ -90,13 +122,15 @@ public class Main {
 			  }
 		  }
 		  else if(response.equals("n") || response.equals("no")){
+			  for(int i = 0; i < exercises.size(); i++){
+				  System.out.println(exercises.get(i));
+			  }
 			  break;
 		  }
 	  }
   }
   
   private static void StrengthExercise(Connection con, Scanner scanner) {
-	  Querries.getOving("strength", con);
 	  
 	  System.out.println("Name of exercise: ");
 	  String name = scanner.nextLine();
@@ -113,7 +147,7 @@ public class Main {
   }
   
   private static void CardioExercise(Connection con, Scanner scanner) {
-	  Querries.getOving("cardio", con);
+	  ResultSet results = Querries.getOving("cardio", con);
 	  
 	  System.out.println("Name of exercise: ");
 	  String name = scanner.nextLine();

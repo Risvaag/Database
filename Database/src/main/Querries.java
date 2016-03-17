@@ -21,12 +21,9 @@ public class Querries {
 				sqlEnum = "id=" + result.getString("ovelse_id");
 			}
 			while(result.next()){
-				sqlEnum += "OR id= "+result.getString("ovelse_id");
+				sqlEnum += " OR id= "+result.getString("ovelse_id");
 			}
 			ovelse = s.executeQuery("SELECT * FROM Ovelse WHERE "+ sqlEnum);
-			while(ovelse.next()){
-				System.out.println(ovelse.getString("navn"));
-			}
 		}catch(SQLException e){
 //			System.err.println(e);
 			e.printStackTrace();
