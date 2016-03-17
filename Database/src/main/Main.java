@@ -1,10 +1,6 @@
 package main;
 
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -59,10 +55,10 @@ public class Main {
   public static void startApp(Connection con) {
 	Scanner scanner = new Scanner(System.in);
     
-    String help = "\nadd\t- add new workout\n"+
-	          "help\t- show all commands\n" +
-	          "search\t- find exercises\n" +
-	          "exit\t- to quit this program\n";
+    String help = "\n1. add\t\t- add new workout\n"+
+	          "2. help\t\t- show all commands\n" +
+	          "3. search\t- find exercises\n" +
+	          "4. exit\t\t- to quit this program\n";
     System.out.println(help);
 
     boolean running = true;
@@ -70,21 +66,22 @@ public class Main {
     while (running){
       String input = scanner.nextLine();
       switch (input) {
-	      case "exit":
+	      case "4":
 	    	  System.out.println("See you!");
 	    	  running = false;
 	          break;
-	      case "add":
+	      case "1":
 	    	// Start add new workout
 	    	  addWorkout(con, scanner);
 	    	  break;
-	      case "help":
+	      case "2":
 	    	//list all commands
 	          System.out.println(help);
 	          break;
-	      case "search":
+	      case "3":
 	    	  System.out.println("Enter your search: ");
-	    	  search(con);
+	    	  String seek = scanner.nextLine();
+	    	  search(con, seek, scanner);
 	    	  break;
 	      default:
 	    	  System.out.println("Not a valid command, type help to see commands");
@@ -139,7 +136,6 @@ public class Main {
   }
   
   private static void StrengthExercise(Connection con, Scanner scanner) {
-	  
 	  System.out.println("Name of exercise: ");
 	  String name = scanner.nextLine();
 	  
@@ -154,9 +150,7 @@ public class Main {
 	  
   }
   
-  private static void CardioExercise(Connection con, Scanner scanner) {
-	  ResultSet results = Querries.getOving("cardio", con);
-	  
+  private static void CardioExercise(Connection con, Scanner scanner) {	  
 	  System.out.println("Name of exercise: ");
 	  String name = scanner.nextLine();
 	  
@@ -180,12 +174,10 @@ public class Main {
 	  System.out.println("Total time: ");
 	  int time = scanner.nextInt();
   }
-  
-//  private static void showWorkout(){
-//
-//  }
-  private static void search(Connection con){
 
+  private static void search(Connection con, String seek, Scanner scanner){
+	  
+	  
   }
 
 }
