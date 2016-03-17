@@ -45,6 +45,16 @@ public class Main {
 	  }
 	  return -1;
   }
+  
+  private static void addExercises(ResultSet results, Scanner scanner, List<Integer> exercises){
+	  printExercises(results);
+		int id = selectExercise(scanner);
+		if(id == -1){
+			//fuck this
+		}else{
+			exercises.add(id);
+		}
+  }
     
   public static void startApp(Connection con) {
 	Scanner scanner = new Scanner(System.in);
@@ -99,20 +109,18 @@ public class Main {
 			  		case "cardio":
 			  			done = true;
 			  			ResultSet results = Querries.getOving("cardio", con);
-			  			printExercises(results);
-			  			int id = selectExercise(scanner);
-			  			if(id == -1){
-			  				//fuck this
-			  			}else{
-			  				exercises.add(id);
-			  			}
+			  			addExercises(results, scanner, exercises);
 			  			break;
 			  		case "strength":
 			  			done=true;
+			  			ResultSet results2 = Querries.getOving("strength", con);
+			  			addExercises(results2, scanner, exercises);
 			  			//StrengthExercise(con, scanner);
 			  			break;
 			  		case "endurance":
 			  			done = true;
+			  			ResultSet results3 = Querries.getOving("endurance", con);
+			  			addExercises(results3, scanner, exercises);
 			  			//EnduranceExercise(con, scanner);
 			  			break;
 			  		default:
