@@ -8,7 +8,7 @@ public class Main {
     System.out.print("Ready\n>> ");
     while (scanner.hasNext()){
       String input = scanner.nextLine();
-
+// Todo / testfunksjoner:
       // Registrere hvilke oevelser man har gjort under en bestemt treningsoekt, samt hvordan selve treningen har gaatt.
       // Holde oversikt over kjente oevelser, sette opp nye maal, og vite hvilke maal man har hatt.
       // Se progresjon for en bestemt oevelse over en periode, samt hvilke maal man har hatt.
